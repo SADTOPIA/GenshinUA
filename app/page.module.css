@@ -1,0 +1,70 @@
+.body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  margin: auto;
+  width: 90%;
+  max-width: 1200px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #0F0F0F;
+  border: 2px solid #5633E3;
+  border-radius: 40px;
+  overflow-y: auto;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.h1 {
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+  color: #FFFFFF;
+  margin: 0;
+  text-align: center;
+}
+
+.ul {
+  list-style: none; /* Убираем маркеры списка */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap; /* Позволяет переносить элементы на новую строку, если не хватает места */
+  gap: 20px; /* Расстояние между элементами */
+}
+
+.li {
+  display: flex;
+  flex-direction: column; /* Внутри элемента оставляем вертикальное расположение */
+  align-items: center; /* Центрируем содержимое по горизонтали */
+  justify-content: center;
+}
+
+.background {
+  background-image: url('/genshinBackGround.png');
+  background-size: cover; /* Adjust size */
+  background-position: center; /* Center the image */
+  height: 100vh; /* Full screen height */
+  display: flex;
+  flex-direction: column;
+  color: white; /* Example for text color */
+  overflow: hidden; /* Запрещаем прокрутку самого body */
+}
+
+.itemList{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
