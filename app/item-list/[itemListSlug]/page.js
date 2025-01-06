@@ -1,10 +1,10 @@
 import NavBar from "@/components/nav-bar/page";
 import styles from "../../page.module.css";
 import Filtration from "@/components/filtration/page";
-import fetchDataListItems from '../../../lib/characters';
+import {fetchDataListItems} from '../../../lib/dataFetcher';
 import Link from "next/link";
 
-export default async function ItemListSlugPage({params}){
+export default async function ItemListSlugPage(){
   const data = await fetchDataListItems();
 
   return (
