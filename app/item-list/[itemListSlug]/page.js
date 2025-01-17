@@ -5,23 +5,23 @@ import styles from "../../page.module.css";
 import Filtration from "@/components/filtration/page";
 import {fetchDataListItems} from '../../../lib/dataFetcher';
 import Link from "next/link";
-import {useEffect, useState} from "react";
+import {use, useEffect, useState} from "react";
 
 
-export default  function ItemListSlugPage(){
-  // let filter = {};
-  // const fetchedData = await fetchDataListItems(filter);
-
-  const [fetchedData, setFetchedData] = useState([]);
+export default  function ItemListSlugPage({params}){
+  const {itemListSlug} = use(params);
+  const [fetchedCharactersListData, setFetchedCharactersListData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // let filter = {};
+
   useEffect(() => {
-    async function dataReceiver() {
+    async function charactersListDataReceiver() {
       try {
         setLoading(true);
         const filter = {};
-        const data = await fetchDataListItems(filter);
-        setFetchedData(data);
+        const data = await fetchDataListItems(itemListSlug);
+        setFetchedCharactersListData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -29,8 +29,8 @@ export default  function ItemListSlugPage(){
       }
     }
 
-    dataReceiver();
-  }, []);
+    charactersListDataReceiver();
+  }, [itemListSlug]);
 
 
 
@@ -44,11 +44,11 @@ export default  function ItemListSlugPage(){
             ) : (
               <>
             <div>
-              <Filtration charactersData={fetchedData}/>
+              <Filtration charactersData={fetchedCharactersListData}/>
             </div>
             <div className={styles.itemList}>
               <ul className={styles.ul}>
-                {fetchedData.map((item) => (
+                {fetchedCharactersListData.map((item) => (
                   <li key={item.id} className={styles.li}>
                     <Link href={`/item-page/${item.name}`}>
                       <div>
