@@ -1,6 +1,8 @@
 import styles from "./filtration.module.css";
+import {fetchDataListItems} from '../../lib/dataFetcher';
 
-export default function Filtration() {
+export default function Filtration({charactersData}) {
+  // console.log(charactersData);
   const categories = {
     rarity: ["All", "4*", "5*"],
     weapons: ["All", "sword", "bow", "catalyst", "spear", "claymore"],
@@ -15,12 +17,34 @@ export default function Filtration() {
       "geo",
     ],
   };
+  
+  // let filter = {};
+
+  // const setFilter = async(data) => {
+  //   'use server'
+  //   const itemId = data.get("itemId");
+  //   console.log(itemId);
+  //   filter.weapon = itemId;
+  //   const newCharacterFilter = await fetchDataListItems(filter);
+  //
+  //
+  // }
+
+  // const renderButtons = (items) =>
+  //   items.map((item) => (
+  //     <form action={setFilter}>
+  //       <input name="itemId" className="hidden" value={item} readOnly/>
+  //       <button type="submit" key={item} className={styles.button}>
+  //       {item}
+  //       </button>
+  //     </form>
+  //   ));
 
   const renderButtons = (items) =>
     items.map((item) => (
-      <button key={item} className={styles.button}>
-        {item}
-      </button>
+        <button type="submit" key={item} className={styles.button}>
+          {item}
+        </button>
     ));
 
   return (
