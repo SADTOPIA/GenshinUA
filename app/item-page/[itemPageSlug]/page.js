@@ -56,33 +56,6 @@ export default function ItemPage({params}) {
           <div className={styles.chartContainer}>Chart Section</div>
         </div>
 
-      {/*  <div className={styles.secondarySection}>*/}
-      {/*    <div className={styles.thumbnailContainer}>*/}
-      {/*      <img*/}
-      {/*        src={fetchedCharacterData.mini_img}*/}
-      {/*        alt={fetchedCharacterData.name}*/}
-      {/*        className={styles.itemImg}*/}
-      {/*        style={{ width: '100px', height: '100px', objectFit: 'cover' }}*/}
-      {/*      />*/}
-      {/*      <div className={styles.textContainer}>{fetchedCharacterData.weapons[0].name}</div>*/}
-      {/*      <div className={styles.verdictContainer}>{fetchedCharacterData.weapons[0].passive}</div>*/}
-      {/*    </div>*/}
-
-      {/*    */}
-
-      {/*    <div className={styles.thumbnailContainer}>*/}
-      {/*      <img*/}
-      {/*        src={fetchedCharacterData.mini_img}*/}
-      {/*        alt={fetchedCharacterData.name}*/}
-      {/*        className={styles.itemImg}*/}
-      {/*        style={{ width: '100px', height: '100px', objectFit: 'cover' }}*/}
-      {/*      />*/}
-      {/*      <div className={styles.textContainer}>{fetchedCharacterData.weapons[1].name}</div>*/}
-      {/*      <div className={styles.verdictContainer}>{fetchedCharacterData.weapons[1].passive}</div>*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
-
         <div className={styles.secondarySection}>
           <div className={styles.thumbnailContainer}>
             <div className={styles.imageContainer}>
@@ -102,24 +75,31 @@ export default function ItemPage({params}) {
                   style={{ width: '100px', height: '100px', objectFit: 'cover' }}
                 />
               </div>
-              <div className={styles.textContainer}>{fetchedCharacterData.name}</div>
-              <div className={styles.textContainer}>{fetchedCharacterData.description}</div>
-              <div className={styles.textContainer}>{fetchedCharacterData.stars}</div>
-              <div className={styles.textContainer}>{fetchedCharacterData.element}</div>
-              <div className={styles.textContainer}>{fetchedCharacterData.birthday}</div>
-              <div className={styles.textContainer}>{fetchedCharacterData.weapon}</div>
-              <div className={styles.textContainer}>{fetchedCharacterData.region}</div>
-              <div className={styles.textContainer}>{fetchedCharacterData.release_date}</div>
-              <div className={styles.textContainer}>{fetchedCharacterData.hp}</div>
-              <div className={styles.textContainer}>{fetchedCharacterData.atc}</div>
-              <div className={styles.textContainer}>{fetchedCharacterData.deff}</div>
-              <div className={styles.textContainer}>{fetchedCharacterData.flex}</div>
-              <div className={styles.textContainer}>{fetchedCharacterData.flex_name}</div>
-              <div className={styles.textContainer}>{fetchedCharacterData.signature_weapon_id}</div>
+
+              <div>
+                {Object.entries({
+                  name: fetchedCharacterData.name,
+                  description: fetchedCharacterData.description,
+                  stars: fetchedCharacterData.stars,
+                  element: fetchedCharacterData.element,
+                  birthday: fetchedCharacterData.birthday,
+                  weapon: fetchedCharacterData.weapon,
+                  region: fetchedCharacterData.region,
+                  release_date: fetchedCharacterData.release_date,
+                  hp: fetchedCharacterData.hp,
+                  atc: fetchedCharacterData.atc,
+                  deff: fetchedCharacterData.deff,
+                  flex: fetchedCharacterData.flex,
+                  flex_name: fetchedCharacterData.flex_name,
+                  signature_weapon_id: fetchedCharacterData.signature_weapon_id,
+                }).map(([key, value]) => (
+                  <div key={key} className={styles.textContainer}>
+                    {value}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-
-
         </div>
 
         <div className={styles.secondarySection}>

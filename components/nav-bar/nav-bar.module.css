@@ -31,7 +31,13 @@
     font-size: 18px;
     transition: color 0.3s;
 }
+.activeNavLink {
+    color: purple; /* Цвет активной ссылки */
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+}
 
 .navLink:hover {
-    color: #ffcc00;
+    color: #5633E3;
 }
