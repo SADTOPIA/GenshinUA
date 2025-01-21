@@ -1,36 +1,32 @@
 'use client'
 
-import { fetchDataItem } from '../../../lib/dataFetcher';
-import styles from '../item-page.module.css';
 import NavBar from "@/components/nav-bar/page";
-import {useEffect, useState} from "react";
-import { use } from 'react';
+import styles from "../item-page.module.css";
+import { useEffect, use } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCharacterItem } from "../../../store/character-item-slice";
 
 export default function ItemPage({params}) {
-  const {itemPageSlug} = use(params);
-  const [fetchedCharacterData, setFetchedCharacterData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { itemPageSlug } = use(params);
+  const dispatch = useDispatch();
+  const { data: fetchedCharacterData, loading, error } = useSelector(
+    (state) => state.characterItem
+  );
 
 
   useEffect(() => {
-    async function characterDataReceiver() {
-      try {
-        setLoading(true);
-        const filter = {}; // Define your filter here if needed
-        const data = await fetchDataItem(itemPageSlug);
-        setFetchedCharacterData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
+    dispatch(fetchCharacterItem(itemPageSlug));
+  }, [dispatch, itemPageSlug]);
 
-    characterDataReceiver();
-  }, [itemPageSlug]);
+
 
   if (loading) {
     return <div>Loading...</div>;
+
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
   }
 
   return (
@@ -68,7 +64,7 @@ export default function ItemPage({params}) {
                   src={fetchedCharacterData.mini_img}
                   alt={fetchedCharacterData.name}
                   className={styles.itemImg}
-                  style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                  style={{ width: "100px", height: "100px", objectFit: "cover" }}
                 />
               </div>
 
@@ -99,60 +95,71 @@ export default function ItemPage({params}) {
         </div>
 
         <div className={styles.secondarySection}>
-          {fetchedCharacterData.weapons.map((weapon, index) => (
-            <div key={index}>
-              <div  className={styles.thumbnailContainer}>
-                <img
-                  src={fetchedCharacterData.mini_img}
-                  alt={weapon.name}
-                  className={styles.itemImg}
-                  style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-                />
-                <div className={styles.textContainer}>{weapon.name}</div>
-                <div className={styles.verdictContainer}>{weapon.passive}</div>
+          {fetchedCharacterData.weapons?.length > 0 ? (
+            fetchedCharacterData.weapons.map((weapon, index) => (
+              <div key={index}>
+                <div className={styles.thumbnailContainer}>
+                  <img
+                    src={fetchedCharacterData.mini_img}
+                    alt={weapon.name}
+                    className={styles.itemImg}
+                    style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                  />
+                  <div className={styles.textContainer}>{weapon.name}</div>
+                  <div className={styles.verdictContainer}>{weapon.passive}</div>
+                </div>
+                <hr className={styles.separator} />
               </div>
-              <hr className={styles.separator} />
-            </div>
-          ))}
+            ))
+          ) : (
+            <p>No weapons available.</p>
+          )}
         </div>
 
         <div className={styles.secondarySection}>
-          {fetchedCharacterData.constellations.map((constellations, index) => (
-            <div key={index}>
-              <div  className={styles.thumbnailContainer}>
-                <img
-                  src={fetchedCharacterData.mini_img}
-                  alt={constellations.name}
-                  className={styles.itemImg}
-                  style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-                />
-                <div className={styles.textContainer}>{constellations.name}</div>
-                <div className={styles.verdictContainer}>{constellations.description}</div>
+          {fetchedCharacterData.constellations?.length > 0 ? (
+            fetchedCharacterData.constellations.map((constellation, index) => (
+              <div key={index}>
+                <div className={styles.thumbnailContainer}>
+                  <img
+                    src={fetchedCharacterData.mini_img}
+                    alt={constellation.name}
+                    className={styles.itemImg}
+                    style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                  />
+                  <div className={styles.textContainer}>{constellation.name}</div>
+                  <div className={styles.verdictContainer}>{constellation.description}</div>
+                </div>
+                <hr className={styles.separator} />
               </div>
-              <hr className={styles.separator} />
-            </div>
-          ))}
+            ))
+          ) : (
+            <p>No constellations available.</p>
+          )}
         </div>
 
         <div className={styles.secondarySection}>
-          {fetchedCharacterData.talents.map((talents, index) => (
-            <div key={index}>
-              <div  className={styles.thumbnailContainer}>
-                <img
-                  src={fetchedCharacterData.mini_img}
-                  alt={talents.name}
-                  className={styles.itemImg}
-                  style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-                />
-                <div className={styles.textContainer}>{talents.name}</div>
-                <div className={styles.verdictContainer}>{talents.type}</div>
-                <div className={styles.verdictContainer}>{talents.description}</div>
+          {fetchedCharacterData.talents?.length > 0 ? (
+            fetchedCharacterData.talents.map((talent, index) => (
+              <div key={index}>
+                <div className={styles.thumbnailContainer}>
+                  <img
+                    src={fetchedCharacterData.mini_img}
+                    alt={talent.name}
+                    className={styles.itemImg}
+                    style={{ width: "100px", height: "100px", objectFit: "cover" }}
+                  />
+                  <div className={styles.textContainer}>{talent.name}</div>
+                  <div className={styles.verdictContainer}>{talent.type}</div>
+                  <div className={styles.verdictContainer}>{talent.description}</div>
+                </div>
+                <hr className={styles.separator} />
               </div>
-              <hr className={styles.separator} />
-            </div>
-          ))}
+            ))
+          ) : (
+            <p>No talents available.</p>
+          )}
         </div>
-
       </div>
     </div>
   );

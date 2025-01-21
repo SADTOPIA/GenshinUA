@@ -1,5 +1,5 @@
 import styles from "./filtration.module.css";
-import {fetchDataListItems} from '../../lib/dataFetcher';
+
 
 export default function Filtration({charactersData}) {
   // console.log(charactersData);

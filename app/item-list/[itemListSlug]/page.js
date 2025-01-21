@@ -20,6 +20,7 @@ export default  function ItemListSlugPage({params}){
 
   useEffect(() => {
     dispatch(fetchCharactersList(itemListSlug));
+    console.log(itemListSlug);
   }, [dispatch, itemListSlug]);
 
   return (
