@@ -8,13 +8,9 @@ import { use } from 'react';
 
 export default function ItemPage({params}) {
   const {itemPageSlug} = use(params);
-  // const data = await fetchDataItem(itemPageSlug);
-  // let filter = {};
-
   const [fetchedCharacterData, setFetchedCharacterData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // let filter = {};
 
   useEffect(() => {
     async function characterDataReceiver() {
@@ -105,17 +101,17 @@ export default function ItemPage({params}) {
         <div className={styles.secondarySection}>
           {fetchedCharacterData.weapons.map((weapon, index) => (
             <div key={index}>
-            <div  className={styles.thumbnailContainer}>
-              <img
-                src={fetchedCharacterData.mini_img}
-                alt={weapon.name}
-                className={styles.itemImg}
-                style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-              />
-              <div className={styles.textContainer}>{weapon.name}</div>
-              <div className={styles.verdictContainer}>{weapon.passive}</div>
-            </div>
-             <hr className={styles.separator} />
+              <div  className={styles.thumbnailContainer}>
+                <img
+                  src={fetchedCharacterData.mini_img}
+                  alt={weapon.name}
+                  className={styles.itemImg}
+                  style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                />
+                <div className={styles.textContainer}>{weapon.name}</div>
+                <div className={styles.verdictContainer}>{weapon.passive}</div>
+              </div>
+              <hr className={styles.separator} />
             </div>
           ))}
         </div>

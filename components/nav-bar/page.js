@@ -6,10 +6,16 @@ import Link from "next/link";
 
 import {uiActions} from "@/store/ui-slice";
 import styles from "./nav-bar.module.css";
+import { useEffect } from "react";
 
 export default function NavBar() {
   const dispatch = useDispatch();
   const currentPath = useSelector((state) => state.ui.currentPath);
+
+  useEffect(() => {
+    const path = window.location.pathname; // Получаем текущий путь из URL
+    dispatch(uiActions.highlightBtn(path)); // Устанавливаем его в состоянии
+  }, [dispatch]);
 
   const highlightHandler = (path) => {
     dispatch(uiActions.highlightBtn(path));
