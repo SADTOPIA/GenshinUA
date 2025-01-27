@@ -19,8 +19,7 @@ export default  function ItemListSlugPage({params}){
   );
 
   useEffect(() => {
-    dispatch(fetchCharactersList(itemListSlug));
-    console.log(itemListSlug);
+    dispatch(fetchCharactersList({itemListSlug, filters: {}}));
   }, [dispatch, itemListSlug]);
 
   return (
@@ -35,7 +34,7 @@ export default  function ItemListSlugPage({params}){
           ) : (
             <>
               <div>
-                <Filtration charactersData={fetchedCharactersListData} />
+                <Filtration itemListSlug={itemListSlug} />
               </div>
               <div className={styles.itemList}>
                 <ul className={styles.ul}>

@@ -27,15 +27,17 @@ const charactersSlice = createSlice({
 
 export const fetchCharactersList = createAsyncThunk(
   "characters/fetchCharactersList",
-  async (itemListSlug) => {
+  async ({itemListSlug,filters}) => {
+
     const urlPath = "http://127.0.0.1:8000";
     try {
+
       const response = await fetch(`${urlPath}/${itemListSlug}/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({}),
+        body: JSON.stringify(filters),
       });
 
       if (!response.ok) {
