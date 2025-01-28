@@ -9,10 +9,14 @@ const filterSlice = createSlice({
       weapons: [],
       elements: [],
     },
+    inputQuery: "", // Состояние для поиска
   },
   reducers: {
     setSearchQuery(state, action) {
       state.searchQuery = action.payload;
+    },
+    setInputQuery(state, action) {
+      state.inputQuery = action.payload;
     },
     setFilter(state, action) {
       const { filterType, value } = action.payload;

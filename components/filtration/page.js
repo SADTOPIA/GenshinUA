@@ -1,13 +1,15 @@
 'use client';
 
 import { useDispatch, useSelector } from "react-redux";
+import { useCallback } from "react";
+import debounce from "lodash.debounce";
 import styles from "./filtration.module.css";
 import { filterActions } from "@/store/filter-slice";
 import { fetchCharactersList } from "@/store/characters-list-slice";
 
 export default function Filtration({ itemListSlug }) {
   const dispatch = useDispatch();
-  const { selectedFilters, searchQuery } = useSelector((state) => state.filter);
+  const { selectedFilters, inputQuery, searchQuery } = useSelector((state) => state.filter);
 
   const categories = {
     stars: ["All", "4*", "5*"],
@@ -22,6 +24,29 @@ export default function Filtration({ itemListSlug }) {
       "cryo",
       "geo",
     ],
+  };
+
+  // Дебаунсинг для функции поиска
+  const debouncedSearch = useCallback(
+    debounce((query) => {
+      dispatch(filterActions.setSearchQuery(query));
+      fetchFilteredData({ ...selectedFilters, name: query });
+    }, 500), //
+    [dispatch, selectedFilters]
+  );
+
+  const updateSearchQuery = (e) => {
+    const query = e.target.value;
+    dispatch(filterActions.setInputQuery(query));
+    debouncedSearch(query);
+  };
+
+  const fetchFilteredData = (currentFilters) => {
+    const filtersToSend = Object.fromEntries(
+      Object.entries(currentFilters).filter(([_, value]) => value.length > 0)
+    );
+
+    dispatch(fetchCharactersList({ itemListSlug, filters: filtersToSend }));
   };
 
   const updateFilter = (filterType, value) => {
@@ -42,20 +67,6 @@ export default function Filtration({ itemListSlug }) {
 
     dispatch(filterActions.setFilter({ filterType, value }));
     fetchFilteredData(updatedFilters);
-  };
-
-  const fetchFilteredData = (currentFilters) => {
-    const filtersToSend = Object.fromEntries(
-      Object.entries(currentFilters).filter(([_, value]) => value.length > 0)
-    );
-
-    dispatch(fetchCharactersList({ itemListSlug, filters: filtersToSend }));
-  };
-
-  const updateSearchQuery = (e) => {
-    const query = e.target.value;
-    dispatch(filterActions.setSearchQuery(query));
-    fetchFilteredData({ ...selectedFilters, name: query });
   };
 
   const renderButtons = (items, filterType) =>
@@ -83,11 +94,12 @@ export default function Filtration({ itemListSlug }) {
       <div className={styles.centerDiv}>
         {renderButtons(categories.elements, "elements")}
       </div>
-      <div className={styles.input}>
+      <div className={styles.inputDiv}>
         <input
+          className={styles.input}
           type="text"
           placeholder="Search..."
-          value={searchQuery}
+          value={inputQuery}
           onChange={updateSearchQuery}
         />
       </div>

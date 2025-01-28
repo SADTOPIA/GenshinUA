@@ -12,7 +12,13 @@
     color: white;
 }
 
-.input{
+.inputDiv{
     text-align: center;
     margin: 15px;
+
+}
+
+.input{
+    border: 2px solid #5633E3;
+    border-radius: 10px;
 }
