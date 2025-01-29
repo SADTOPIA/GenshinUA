@@ -23,9 +23,6 @@
   display: none;
 }
 
-.section {
-  margin-bottom: 20px;
-}
 
 .h1 {
   font-family: 'Arial', sans-serif;
@@ -33,22 +30,6 @@
   color: #FFFFFF;
   margin: 0;
   text-align: center;
-}
-
-.ul {
-  list-style: none; /* Убираем маркеры списка */
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap; /* Позволяет переносить элементы на новую строку, если не хватает места */
-  gap: 20px; /* Расстояние между элементами */
-}
-
-.li {
-  display: flex;
-  flex-direction: column; /* Внутри элемента оставляем вертикальное расположение */
-  align-items: center; /* Центрируем содержимое по горизонтали */
-  justify-content: center;
 }
 
 .background {
@@ -62,9 +43,4 @@
   overflow: hidden; /* Запрещаем прокрутку самого body */
 }
 
-.itemList{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
 

@@ -89,10 +89,10 @@ export default function Filtration({ itemListSlug }) {
         {renderButtons(categories.stars, "stars")}
       </div>
       <div className={styles.centerDiv}>
-        {renderButtons(categories.weapons, "weapons")}
+        {(itemListSlug === "characters" || itemListSlug === "weapons") && renderButtons(categories.weapons, "weapons")}
       </div>
       <div className={styles.centerDiv}>
-        {renderButtons(categories.elements, "elements")}
+        {itemListSlug === "characters" && renderButtons(categories.elements, "elements")}
       </div>
       <div className={styles.inputDiv}>
         <input

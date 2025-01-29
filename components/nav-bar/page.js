@@ -49,6 +49,13 @@ export default function NavBar() {
           >
             Weapons
           </Link>
+          <Link
+            href="/item-list/artifacts"
+            className={currentPath === "/item-list/artifacts" ? styles.activeNavLink : styles.navLink}
+            onClick={() => highlightHandler("/item-list/artifacts")}
+          >
+            Artifacts
+          </Link>
         </div>
       </div>
     </nav>

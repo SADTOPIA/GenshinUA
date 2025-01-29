@@ -13,16 +13,12 @@ export default function ItemPage({params}) {
     (state) => state.characterItem
   );
 
-
   useEffect(() => {
     dispatch(fetchCharacterItem(itemPageSlug));
   }, [dispatch, itemPageSlug]);
 
-
-
   if (loading) {
     return <div>Loading...</div>;
-
   }
 
   if (error) {
