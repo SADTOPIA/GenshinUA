@@ -1,6 +1,4 @@
 .background {
-    background-image: url('/genshinBackGround.png');
-    background-size: cover;
     background-position: center;
     height: 100vh;
     display: flex;

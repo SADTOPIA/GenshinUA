@@ -1,8 +1,7 @@
 'use client'
 
-import NavBar from "@/components/nav-bar/page";
 import styles from "../item-list.module.css";
-import Filtration from "@/components/filtration/page";
+import Filtration from "@/components/filtration";
 
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCharactersList } from "../../../store/characters-list-slice";
@@ -22,7 +21,6 @@ export default  function ItemListSlugPage({params}){
 
   return (
     <div className={styles.background}>
-      <NavBar />
       <main className={styles.container}>
         {loading ? (
           <p>Loading...</p>

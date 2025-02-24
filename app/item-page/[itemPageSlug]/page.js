@@ -1,6 +1,5 @@
 'use client'
 
-import NavBar from "@/components/nav-bar/page";
 import styles from "../item-page.module.css";
 import { useEffect, use } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -27,7 +26,6 @@ export default function ItemPage({params}) {
 
   return (
     <div className={styles.background}>
-      <NavBar />
       <div className={styles.mainContainer}>
         <div className={styles.section}>
           <div className={styles.imageContainer}>
