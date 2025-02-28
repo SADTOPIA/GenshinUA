@@ -43,7 +43,7 @@ export default function Filtration({ itemListSlug }) {
       stars: selectedFilters.stars || [],
       weapons: selectedFilters.weapons || [],
       elements: selectedFilters.elements || [],
-      searchQuery: searchQuery || "",
+      name: searchQuery || "",
     };
 
     console.log("🚀 Отправка запроса с фильтрами:", filtersToSend);
