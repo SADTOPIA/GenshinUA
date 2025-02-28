@@ -14,7 +14,7 @@ export default function Filtration({ itemListSlug }) {
   const categories = {
     stars: ["4*", "5*"],
     weapons: ["sword", "bow", "catalyst", "polearm", "claymore"],
-    elements: ["pyro", "hydro", "anemo", "electro", "dendro", "cryo", "geo"],
+    elements: ["pyro", "hydro", "anemo", "electro", "dendro", "cryo", "geo", "user1"],
   };
 
   // Обновление строки поиска
