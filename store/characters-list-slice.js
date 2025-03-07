@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchListCharacters } from "@/lib/fetch-requests";
+import { fetchItemList } from "@/lib/fetch-requests";
 
 export const fetchCharactersList = createAsyncThunk(
   "characters/fetchCharactersList",
@@ -22,7 +22,7 @@ export const fetchCharactersList = createAsyncThunk(
 
     console.log("🚀 Отправляем запрос с фильтрами:", filters);
 
-    return await fetchListCharacters({ itemListSlug, filters });
+    return await fetchItemList({ itemListSlug, filters });
   }
 );
 

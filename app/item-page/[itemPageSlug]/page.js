@@ -1,12 +1,12 @@
 import styles from "../item-page.module.css";
-import { fetchCharacter } from "@/lib/fetch-requests"; // Импортируем вашу функцию
+import { fetchCharacterData } from "@/lib/fetch-requests";
 
 
 export default async function ItemPage({ params }) {
   const { itemPageSlug } = params;
 
 
-  const fetchedCharacterData = await fetchCharacter(itemPageSlug);
+  const fetchedCharacterData = await fetchCharacterData(itemPageSlug);
 
   return (
     <div className={styles.background}>
