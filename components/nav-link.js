@@ -3,7 +3,7 @@
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 
-import styles from "@/components/nav-bar.module.css";
+import styles from "../components/nav-bar.module.css";
 
 
 export default function NavLink({href, children}) {

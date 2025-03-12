@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchItemList } from "@/lib/fetch-requests";
+import { fetchItemList } from "../lib/fetch-requests";
 
 export const fetchCharactersList = createAsyncThunk(
   "characters/fetchCharactersList",

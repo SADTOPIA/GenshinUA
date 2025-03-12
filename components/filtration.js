@@ -8,9 +8,6 @@ export default function Filtration({ itemListSlug }) {
   const dispatch = useDispatch();
   const { selectedFilters, searchQuery } = useSelector((state) => state.filter);
 
-  console.log("🔥 Текущие фильтры:", selectedFilters);
-  console.log("🔍 Поисковый запрос:", searchQuery);
-
   const categories = {
     stars: ["4*", "5*"],
     weapons: ["sword", "bow", "catalyst", "polearm", "claymore"],

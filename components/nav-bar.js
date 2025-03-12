@@ -1,5 +1,5 @@
 import styles from "./nav-bar.module.css";
-import NavLink from "@/components/nav-link";
+import NavLink from "../components/nav-link";
 import { useSession, signOut } from "next-auth/react";
 
 export default function NavBar() {
