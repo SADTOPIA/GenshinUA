@@ -6,7 +6,6 @@ export const fetchCharactersList = createAsyncThunk(
   async ({ itemListSlug, filters, initialData }, { getState }) => {
     const state = getState().characters;
 
-    // Если есть initialData и данных нет, используем его
     if (initialData && state.data.length === 0) {
       return initialData;
     }
@@ -15,12 +14,8 @@ export const fetchCharactersList = createAsyncThunk(
       Object.keys(state.filters).length > 0 &&
       JSON.stringify(state.filters) === JSON.stringify(filters)
     ) {
-      console.log("⏳ Фильтры не изменились, используем кешированные данные");
       return state.data;
     }
-
-
-    console.log("🚀 Отправляем запрос с фильтрами:", filters);
 
     return await fetchItemList({ itemListSlug, filters });
   }
@@ -36,8 +31,8 @@ const charactersSlice = createSlice({
     setItemListSlug: (state, action) => {
       if (state.itemListSlug !== action.payload) {
         state.itemListSlug = action.payload;
-        state.filters = {}; // Сбрасываем фильтры при смене категории
-        state.data = []; // Очищаем список перед новым запросом
+        state.filters = {};
+        state.data = [];
       }
     }
   },

@@ -1,5 +1,5 @@
 import { fetchCharactersList } from "@/lib/fetch-requests";
-import styles from "@/app/item-list/item-list.module.css";
+import styles from "@/app/team-builder/team-builder.module.css";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import {verifyAuth} from "@/lib/verify-auth";
@@ -15,7 +15,7 @@ export default async function TeamBuilderPage() {
 
   return (
     <div className={styles.background}>
-      <main className={styles.container}>
+      <div className={styles.charactersContainer}>
         <ul className={styles.itemList}>
           {charactersData.map((item) => (
             <li key={item.id} className={styles.li}>
@@ -25,7 +25,18 @@ export default async function TeamBuilderPage() {
             </li>
           ))}
         </ul>
-      </main>
+      </div>
+      <div className={styles.userCharactersContainer}>
+        <ul className={styles.itemList}>
+          {charactersData.map((item) => (
+            <li key={item.id} className={styles.li}>
+              <Link href={`/item-page/${item.name}`}>
+                <img src={item.mini_img} alt={item.name} className={styles.characterImage} />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
